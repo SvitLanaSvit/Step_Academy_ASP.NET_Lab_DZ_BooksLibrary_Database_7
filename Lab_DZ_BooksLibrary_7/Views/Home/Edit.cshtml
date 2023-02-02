@@ -1,0 +1,90 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Styles{
+        <style>
+            .form-control {
+            width: 400px;
+            }
+            .container{
+                display: flex;
+            }
+            .fields{
+                margin-right: 20px;
+            }
+            .abo utBook{
+                height: 400px;
+                resize: none;
+            }
+            .text{
+                display: flex;
+                align-items: center;
+            }
+            .button{
+                width: 844px;
+                display: flex;
+                justify-content: space-around;
+                }
+            .btn{
+                width: 400px;
+                margin: 20px 0;
+            }
+        </style>
+}
+@model Book
+
+<form method="post" enctype="multipart/form-data">
+    <div class="container">
+        <input type="hidden" name="id" value="@Model.Id"/>
+        <div class="fields">
+            <div>
+                <label class="col-form-label">
+                    Title:
+                    <input class="form-control" type="text" name="name" value="@Model.Name" />
+                </label>
+            </div>
+            <div>
+                <label class="col-form-label">
+                    Author:
+                    <input class="form-control" type="text" name="author" value="@Model.Author"/>
+                </label>
+            </div>
+            <div>
+                <label class="col-form-label">
+                    Genre:
+                    <input class="form-control" type="text" name="genre" value="@Model.Genre"/>
+                </label>
+            </div>
+            <div>
+                <label class="col-form-label">
+                    Publishing:
+                    <input class="form-control" type="text" name="publishing" value="@Model.Publishing"/>
+                </label>
+            </div>
+            <div>
+                <label class="col-form-label">
+                    YearOfPublishing:
+                    <input class="form-control" type="number" name="yearOfPublishing" value="@Model.YearOfPublishing"/>
+                </label>
+            </div>
+            <div>
+                <label class="col-form-label">
+                    FilePath:
+                    <input class="form-control" type="file" name="filePath" value="@Model.FilePath" accept="image/*"/>
+                </label>
+            </div>
+        </div>
+
+        <div class="text">
+            <label class="col-form-label">
+                AboutBook:
+                <textarea class="form-control aboutBook" cols="4" rows="10" name="aboutBook">@Model.AboutBook</textarea>
+            </label>
+        </div>
+    </div>
+    <div class="button">
+        <input type="submit" class="btn btn-sm btn-primary" value="Edit"/>
+        <a asp-action="BookInfo" class="btn btn-sm btn-info">Return to books</a>
+    </div>
+
+</form>

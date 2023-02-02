@@ -1,0 +1,96 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Styles{
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing:border-box;
+                border: 1px solid none;
+            }
+            .wrapper{
+                margin: 20px auto;
+                justify-content: space-between;
+            }
+            .container{
+                display: flex;
+                flex-direction: row;
+                width: 610px;
+                margin-bottom: 20px;
+            }
+            .card{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height:315px;
+                border:none;
+            }
+            img{
+                height: 315px;
+            }
+            th, td{
+                padding:10px;
+                text-align:left;
+            }
+            td {
+                width: 230px;
+            }
+            th{
+                width: 150px;
+            }
+            .btn{
+                width: 100px;
+            }
+            #add{
+                position: fixed;
+                left: 100px;
+                bottom: 96px;
+            }
+        </style>
+}
+@model List<Book>
+
+<div class="wrapper">
+    @foreach (var item in Model)
+    {
+            <div class="container">
+                <div class="card">
+                    <div class="info">
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <td>@item.Name</td>
+                            </tr>
+                            <tr>
+                                <th>Author</th>
+                                <td>@item.Author</td>
+                            </tr>
+                            <tr>
+                                <th>Genre</th>
+                                <td>@item.Genre</td>
+                            </tr>
+                            <tr>
+                                <th>Publishing</th>
+                                <td>@item.Publishing</td>
+                            </tr>
+                            <tr>
+                                <th>YearOfPublishing</th>
+                                <td>@item.YearOfPublishing</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                    @*<a href="/Home/Details/@item.Id" class="btn btn-primary">More info by @item.Name</a>*@
+                        <a asp-action="details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                        <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+                <div class="image">
+                    <img src="@item.FilePath" alt="@item.Name" />
+                </div> 
+            </div>
+    }
+    <a asp-action="create" class="btn btn-info" id="add">Add book</a>
+</div>
