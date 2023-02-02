@@ -40,6 +40,8 @@
         }
         public Book Add(Book entity)
         {
+            int id = _books.Max(t => t.Id);
+            entity.Id = ++id;
             _books.Add(entity);
             return entity;
         }

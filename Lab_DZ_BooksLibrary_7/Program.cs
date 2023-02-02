@@ -5,9 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//mozno peremykatysja miz builder.Services.AddTransient<IRepository<Book>, BookDbRepository>();
+//builder.Services.AddSingleton<IRepository<Book>, BookRepository>(); 
+
 builder.Services.AddTransient<IRepository<Book>, BookDbRepository>(); //!!!
 string? connStr = builder.Configuration.GetConnectionString("LibraryBooksASP");  //!!!
-builder.Services.AddDbContext<BookContext>(options=>options.UseSqlServer(connStr)); //!!!
+builder.Services.AddDbContext<BookContext>(options => options.UseSqlServer(connStr)); //!!!
 
 var app = builder.Build();
 
